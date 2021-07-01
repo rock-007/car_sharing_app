@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import CarSharingPage from './Containers/CarSharingPage'
+import CarSharingPage from './containers/CarSharingPage'
 
 function App() {
   return (
