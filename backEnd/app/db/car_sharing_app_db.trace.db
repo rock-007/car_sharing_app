@@ -1,4 +1,4 @@
-2021-07-02 23:42:47 database: flush
+2021-07-03 23:16:35 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/Users/umairRocks/codeclan_work/week_15/carSharingApp/backEnd/app/db/car_sharing_app_db.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)

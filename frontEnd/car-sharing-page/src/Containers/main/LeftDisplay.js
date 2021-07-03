@@ -10,20 +10,20 @@ import {
     Appointments,
 } from "@devexpress/dx-react-scheduler-material-ui";
 const LeftDisplay = () => {
-    const currentDate = "2021-07-01";
+    const currentDate = "2021-07-03";
     const schedulerData = [
         {
             title: "Website Re-Design Plan",
-            startDate: new Date(2021, 7, 2, 9, 30), // year, data,month, time, time
-            endDate: new Date(2021, 7, 2, 11, 30),
+            startDate: new Date(2021, 6, 2, 9, 30), // year, data,month, time, time
+            endDate: new Date(2021, 6, 2, 11, 30),
         },
         {
             title: "Book Flights to San Fran for Sales Trip",
-            startDate: new Date(2021, 7, 1, 13, 0),
-            endDate: new Date(2021, 7, 1, 15, 0),
+            startDate: new Date(2021, 6, 1, 13, 0),
+            endDate: new Date(2021, 6, 1, 15, 0),
         },
     ];
-    console.log(new Date(2021, 7, 2, 9, 30));
+    console.log(new Date(2021, 6, 2, 9, 30));
     return (
         <>
             {" User Schedual for next 7  days"}

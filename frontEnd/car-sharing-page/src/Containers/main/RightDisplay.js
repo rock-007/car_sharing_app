@@ -1,36 +1,49 @@
 import Paper from "@material-ui/core/Paper";
-import { ViewState } from "@devexpress/dx-react-scheduler";
-import { WeekView } from "@devexpress/dx-react-scheduler-material-ui";
-import "./Display.css";
+import React, { useState,useCallback } from "react";
+
+import {
+    ViewState,
+    EditingState,
+    IntegratedEditing,
+} from "@devexpress/dx-react-scheduler";
 import {
     Scheduler,
-    DayView,
     Appointments,
+    AppointmentForm,
+    AppointmentTooltip,
+    WeekView,
+    DayView,
+    EditRecurrenceMenu,
+    AllDayPanel,
+    ConfirmationDialog,
 } from "@devexpress/dx-react-scheduler-material-ui";
+import "./Display.css";
 
-const RightDisplay = () => {
-    const currentDate = "2021-07-01";
-    const schedulerData = [
-        {
-            title: "Website Re-Design Plan",
-            startDate: new Date(2021, 7, 2, 9, 30), // year, data,month, time, time
-            endDate: new Date(2021, 7, 2, 11, 30),
-        },
-        {
-            title: "Book Flights to San Fran for Sales Trip",
-            startDate: new Date(2021, 7, 1, 13, 0),
-            endDate: new Date(2021, 7, 1, 15, 0),
-        },
-    ];
+const RightDisplay = ({data,currentDate, updateChange}) => {
+   
+
+
+
+
+    const onCommitChanges = ({ added, changed, deleted })=>{
+
+        updateChange({ added, changed, deleted });
+
+    }
 
     return (
         <>
             {" Set the avaiability for next 7  days"}
             <Paper className="paper">
-                <Scheduler data={schedulerData} height={460}>
+                <Scheduler data={data} height={460}>
                     <ViewState defaultCurrentDate={currentDate} />
-                    <WeekView startDayHour={9} endDayHour={21} />
+                    <EditingState onCommitChanges={onCommitChanges} />
+                    <IntegratedEditing />
+                    <WeekView startDayHour={9} endDayHour={19} />
+                    <ConfirmationDialog />
                     <Appointments />
+                    <AppointmentTooltip showOpenButton showDeleteButton />
+                    <AppointmentForm />
                 </Scheduler>
             </Paper>
         </>
