@@ -1,5 +1,5 @@
 import Paper from "@material-ui/core/Paper";
-import React, { useState,useCallback } from "react";
+import React, { useState } from "react";
 
 import {
     ViewState,
@@ -19,22 +19,14 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 import "./Display.css";
 
-const RightDisplay = ({data,currentDate, updateChange}) => {
-   
-
-
-
-
-    const onCommitChanges = ({ added, changed, deleted })=>{
-
+const RightDisplay = ({ data, currentDate, updateChange }) => {
+    const onCommitChanges = ({ added, changed, deleted }) => {
         updateChange({ added, changed, deleted });
-
-    }
+    };
 
     return (
         <>
-            {" Set the avaiability for next 7  days"}
-            <Paper className="paper">
+             <Paper className="paper">
                 <Scheduler data={data} height={460}>
                     <ViewState defaultCurrentDate={currentDate} />
                     <EditingState onCommitChanges={onCommitChanges} />

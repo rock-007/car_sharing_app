@@ -1,11 +1,12 @@
 import Search from "./Search";
 import DisplayBody from "./DisplayBody";
-
-const MainBody = () => {
+import React, { useState } from "react";
+const MainBody = ({user}) => {
+    const [displaySearch, setDisplaySearch] = useState(false);
     return (
         <>
             <Search />
-            <DisplayBody />
+            <DisplayBody displaySearch={displaySearch} user={user} />
         </>
     );
 };
