@@ -15,7 +15,7 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Long
     List<Availability> findByVehicleUser(User user);
     List<Availability> findByVehicleUserId(Long id);
 
-        List<Availability> findByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThan(String departingCity, String destinationCity, LocalDate journeyStartDate ,LocalTime journeyStartTime);
+        List<Availability> findByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(String departingCity, String destinationCity, LocalDate journeyStartDate ,LocalTime journeyStartTime, Boolean booleanValue);
 }
 
 

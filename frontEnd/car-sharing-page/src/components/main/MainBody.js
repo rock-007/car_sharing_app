@@ -25,21 +25,24 @@ const MainBody = ({ user }) => {
             journeyStartTime,
         }).then((searchResult) => {
             console.log(searchResult);
-
-            searchResult.map((eachresult) => {
+let tempArray=[];
+            let result = searchResult.map((eachresult, index) => {
                 return getUserId(eachresult).then((result) => {
                     let id = result.id;
                     let name = result.firstName;
-                    const map = new Map();
-
+                    // const map = new Map();
+                    console.log(index);
+                    console.log(id);
                     console.log(name);
-                    console.log(map);
-                    map.set(id, [name, eachresult]);
-                    setDisplaySearchResult(...displaySearchResult, [
-                        map.set(id, [name, eachresult]),
-                    ]);
+                    console.log(eachresult);
+                    let x = [index, name, eachresult, id];
+                    console.log(x)
+                    //map.set(id, [name, eachresult]);
+                    return tempArray.push(x);
                 });
             });
+            setDisplaySearchResult(tempArray)
+            console.log(result);
         });
     };
 

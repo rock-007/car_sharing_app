@@ -3,11 +3,19 @@ import Button from "react-bootstrap/Button";
 import OfferTable from "../../components/main/OfferTable";
 const MatchRides = ({ displaySearchResult }) => {
     console.log(displaySearchResult);
-    displaySearchResult.map((eachResult) => {
+    let displayResult = displaySearchResult.map((eachResult, index) => {
         for (let [userId, userObject] of eachResult.entries()) {
+            console.log("ddddddddddddd"+index)
             console.log(userId);
             console.log(userObject);
-            <OfferTable userName={userObject[0]} rideInfo={userObject[1]}/>;
+            return (
+                <OfferTable
+                    userName={userObject[0]}
+                    rideInfo={userObject[1]}
+                    key={index}
+                    index={index}
+                />
+            );
         }
     });
     // if (displaySearchResult.length>0){
@@ -19,8 +27,11 @@ const MatchRides = ({ displaySearchResult }) => {
         <>
             <Paper>
                 <table className="table">
+                    {/* <span>{displaySearchResult[0]}</span> */}
                     <thead>
                         <tr>
+                            <th>S.No</th>
+
                             <th>Name</th>
                             <th>Date</th>
                             <th>DepartTime</th>
@@ -28,26 +39,7 @@ const MatchRides = ({ displaySearchResult }) => {
                             <th>Book</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>
-                                <Button>Book</Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@hat</td>
-                            <td>
-                                <Button>Book</Button>
-                            </td>
-                        </tr>{" "}
-                    </tbody>
+                    <tbody>{displayResult}</tbody>
                 </table>
             </Paper>
         </>

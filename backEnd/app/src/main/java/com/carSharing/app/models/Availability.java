@@ -23,6 +23,16 @@ public class Availability {
     private LocalDate journeyStartDate;
     @Column(name = "journey_start_time")
     private LocalTime journeyStartTime;
+    @Column(name = "available")
+    private Boolean available= true ;
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
 
     //LocalDate today = LocalDate.now();
     @JsonBackReference
@@ -31,7 +41,7 @@ public class Availability {
     private Vehicle vehicle;
     @JsonIgnoreProperties(value = "availability")
 
-     @OneToOne(mappedBy = "availability")
+    @OneToOne(mappedBy = "availability")
     private Booking booking;
 
     //    @ManyToOne
@@ -44,9 +54,12 @@ public class Availability {
         this.journeyStartTime = journeyStartTime;
         this.vehicle = vehicle;
 
+
     }
+
     public Availability() {
     }
+
     public Long getId() {
         return id;
     }
@@ -62,7 +75,6 @@ public class Availability {
     public void setBooking(Booking booking) {
         this.booking = booking;
     }
-
 
 
     public String getDepartingCity() {
