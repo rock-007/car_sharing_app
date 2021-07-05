@@ -1,0 +1,11 @@
+
+
+
+.header {
+    background-color: rgb(114, 110, 110);
+    height:80px;
+    display:flex;
+    padding: 0.5rem calc((100vw-1000px)/2);
+    z-index :10;
+    /* justify-content: space-between; all equal space out  */
+}
