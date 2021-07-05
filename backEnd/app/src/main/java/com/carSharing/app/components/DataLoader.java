@@ -1,9 +1,11 @@
 package com.carSharing.app.components;
 
 
+import com.carSharing.app.models.Availability;
 import com.carSharing.app.models.Booking;
 import com.carSharing.app.models.User;
 import com.carSharing.app.models.Vehicle;
+import com.carSharing.app.repository.AvailabilityRepository;
 import com.carSharing.app.repository.BookingRepository;
 import com.carSharing.app.repository.UserRepository;
 import com.carSharing.app.repository.VehicleRepository;
@@ -24,6 +26,8 @@ public class DataLoader implements ApplicationRunner {
     VehicleRepository vehicleRepository;
     @Autowired
     BookingRepository bookingRepository;
+    @Autowired
+    AvailabilityRepository availabilityRepository;
 
     public DataLoader() {
     }
@@ -34,14 +38,20 @@ public class DataLoader implements ApplicationRunner {
 
         User user1 = new User("Umair", "Ashraf", "umair.ashraf@hotmail.co.uk", "Male");
         userRepository.save(user1);
+        System.out.println("user1" + user1);
+
         User user2 = new User("Asghar", "Ahmed", "asghar.ahmed@hotmail.co.uk", "Male");
         userRepository.save(user2);
         Vehicle vehicle1 = new Vehicle("Saloon", 5, "Gy4454", user1);
         vehicleRepository.save(vehicle1);
         System.out.println("date1xxxxx" + LocalDate.now());
-        System.out.println("time1xxxx" + LocalDate.now());
-        Booking booking1 = new Booking("Glasgow", "Edinburgh", LocalDate.now(), LocalTime.now(), vehicle1, user2);
+        System.out.println("time1xxxx" + LocalTime.now());
+        Availability availability = new Availability("Glasgow", "Edinburgh", LocalDate.now(), LocalTime.now(), vehicle1);
+        availabilityRepository.save(availability);
+        Booking booking1 = new Booking(availability, user2);
         bookingRepository.save(booking1);
 
     }
 }
+
+
