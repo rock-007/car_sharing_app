@@ -18,9 +18,9 @@ export const updateAvailability = (payload) => {
 export const getUserSchedules = (user) => {
     console.log(user);
     return fetch(baseURL1 + "user", {
-        method: "POST", 
+        method: "POST",
         body: JSON.stringify(user),
-        headers: {  
+        headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
             // "Access-Control-Allow-Origin": "*",
@@ -30,6 +30,8 @@ export const getUserSchedules = (user) => {
 //USer_Search_Result
 export const getSearchResults = (searchInput) => {
     console.log(searchInput);
+
+    let tempArray=[];
     return fetch(baseURL2, {
         method: "POST",
         body: JSON.stringify(searchInput),
@@ -40,7 +42,16 @@ export const getSearchResults = (searchInput) => {
         },
     })
         .then((res) => res.json())
-        .then((data) => data);
+        .then((availableRides) => {
+            tempArray=availableRides;
+            const result = availableRides.map((eachAvailableRide) =>
+                getUserId(eachAvailableRide)
+            );
+ 
+            return Promise.all(result);
+        }).then(x=>{
+            return (x.map((y,index)=>{return[y,tempArray[index]]}))
+        });
 };
 
 export const getUserId = (eachAvailability) => {

@@ -24,22 +24,28 @@ const MainBody = ({ user }) => {
             journeyStartDate,
             journeyStartTime,
         }).then((searchResult) => {
-            console.log(searchResult);
-
-            searchResult.map((eachresult) => {
-                return getUserId(eachresult).then((result) => {
-                    let id = result.id;
-                    let name = result.firstName;
-                    const map = new Map();
-
-                    console.log(name);
-                    console.log(map);
-                    map.set(id, [name, eachresult]);
-                    setDisplaySearchResult(...displaySearchResult, [
-                        map.set(id, [name, eachresult]),
-                    ]);
-                });
-            });
+            console.log(searchResult[0])
+            setDisplaySearchResult(searchResult)
+            // console.log(searchResult);
+            // let tempArray = [];
+            // let result = searchResult.map((eachresult, index) => {
+            //     getUserId(eachresult).then((result) => {
+            //         let id = result.id;
+            //         let name = result.firstName;
+            //         // const map = new Map();
+            //         // console.log(index);
+            //         // console.log(id);
+            //         // console.log(name);
+            //         // console.log(eachresult);
+            //         let eachOfferRide = [index, id, name, eachresult];
+            //         // return [index, id, name, eachresult];
+            //         // console.log(eachOfferRide);
+            //         //map.set(id, [name, eachresult]);
+            //         tempArray.push(eachOfferRide);
+            //         // return 1;
+            //     });
+            // });
+            // setDisplaySearchResult([...displaySearchResult, tempArray]);
         });
     };
 
@@ -49,7 +55,7 @@ const MainBody = ({ user }) => {
             <DisplayBody
                 displaySearch={displaySearch}
                 user={user}
-                displaySearchResult={displaySearchResult}
+                displaySearchResult1={displaySearchResult}
             />
         </>
     );

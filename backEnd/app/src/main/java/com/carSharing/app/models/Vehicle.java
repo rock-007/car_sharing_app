@@ -1,6 +1,8 @@
 package com.carSharing.app.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,15 +20,17 @@ public class Vehicle {
     @Column(name = "reg_no")
     private String regNo;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+     @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
+    private List<Availability> availabilities;
 
-    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
-    private List<Booking> booking;
-
-
+//    @ManyToOne
+//    @JoinColumn(name = "vehicle_id", nullable = false)
+//    private Vehicle vehicle;
 
     public Vehicle(String type, int totalNoOfSeats, String regNo, User user) {
         this.type = type;
@@ -46,13 +50,14 @@ public class Vehicle {
         this.id = id;
     }
 
-    public List<Booking> getBooking() {
-        return booking;
+    public List<Availability> getBooking() {
+        return availabilities;
     }
 
-    public void setBooking(Booking booking) {
-        this.booking.add(booking);
+    public void setBooking(Availability availability) {
+        this.availabilities.add(availability);
     }
+
     public User getUser() {
         return user;
     }

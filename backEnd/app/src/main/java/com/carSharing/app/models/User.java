@@ -1,5 +1,7 @@
 package com.carSharing.app.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Vehicle> vehicles;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
 
