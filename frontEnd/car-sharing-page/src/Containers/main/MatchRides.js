@@ -1,27 +1,29 @@
 import Paper from "@material-ui/core/Paper";
-import Button from "react-bootstrap/Button";
 import OfferTable from "../../components/main/OfferTable";
 const MatchRides = ({ displaySearchResult }) => {
-    console.log(displaySearchResult);
-    let displayResult = displaySearchResult.map((eachResult, index) => {
-        for (let [userId, userObject] of eachResult.entries()) {
-            console.log("ddddddddddddd"+index)
-            console.log(userId);
-            console.log(userObject);
+    let displayResult = null;
+
+    if (displaySearchResult.length > 0) {
+        console.log(displaySearchResult.length);
+        console.log(displaySearchResult);
+
+        displayResult = displaySearchResult.map((eachResult, index) => {
+            console.log(eachResult[0]);
+            console.log(eachResult);
+            // return eachResult;
+
             return (
                 <OfferTable
-                    userName={userObject[0]}
-                    rideInfo={userObject[1]}
+                    userId={eachResult[0]["id"]}
+                    userName={eachResult[0]["firstName"]}
+                    rideInfo={eachResult[1]}
                     key={index}
                     index={index}
                 />
             );
-        }
-    });
-    // if (displaySearchResult.length>0){
-    //     console.log(displaySearchResult[0].get("3"));
-
-    //   }
+        });
+        console.log("eeee");
+    }
 
     return (
         <>

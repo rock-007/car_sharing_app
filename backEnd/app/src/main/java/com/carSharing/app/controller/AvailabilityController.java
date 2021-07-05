@@ -43,8 +43,8 @@ public class AvailabilityController {
         System.out.println("ccccc" + search.getJourneyStartDate());
 
 //
-        List<Availability> aaa = availabilityRepository.findByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true);
-        System.out.println("yyy"+aaa);
+//        List<Availability> aaa = availabilityRepository.findByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true);
+//        System.out.println("yyy"+aaa);
         return new ResponseEntity<>(availabilityRepository.findByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true), HttpStatus.OK);
     }
 
