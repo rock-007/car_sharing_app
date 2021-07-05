@@ -5,21 +5,11 @@ import { getUserSchedules } from "../../services/CarSharingServices";
 import moment from "moment";
 
 const UserSchedualAvailability = ({ displaySearch, user }) => {
+
+    console.log(user);
     const [schedual, setSchedual] = useState(true);
     const [offerAvailability, setOfferAvailability] = useState(false);
-    // const currentDate = "2021-07-03";
-    // const schedulerData = [
-    //     {
-    //         title: "Website Re-Design Plan",
-    //         startDate: new Date(2021, 6, 8, 9, 30), // year, data,month, time, time
-    //         endDate: new Date(2021, 6, 8, 11, 30),
-    //     },
-    //     {
-    //         title: "Book Flights to San Fran for Sales Trip",
-    //         startDate: new Date(2021, 6, 9, 13, 0),
-    //         endDate: new Date(2021, 6, 9, 15, 0),
-    //     },
-    // ];
+
 
     useEffect(() => {
         pullData();
@@ -28,10 +18,11 @@ const UserSchedualAvailability = ({ displaySearch, user }) => {
     const [data, setData] = useState(null);
 
     const pullData = () => {
-        let x = getUserSchedules(user).then((data) =>
-            dataCalenderMapping(data)
-        );
-        console.log(x);
+     getUserSchedules(user).then((data1) =>{ 
+         console.log(data1)
+           return  dataCalenderMapping(data1)
+     });
+     
     };
 
     // const schedulerData = [
@@ -41,14 +32,15 @@ const UserSchedualAvailability = ({ displaySearch, user }) => {
     //         endDate: new Date(2021, 6, 7, 11, 30),
     //     },
 
-    const dataCalenderMapping = (data) => {
+    const dataCalenderMapping = (data1) => {
         console.log("2223");
+        console.log(data1);
         setData(
-            data.map((eachAvailability, index) => {
-                var dateTime = moment(
-                    `${eachAvailability.journeyStartDate} ${eachAvailability.journeyStartTime}`,
-                    "YYYY-MM-DD HH:mm"
-                ).format('LLLL');
+            data1.map((eachAvailability, index) => {
+                // var dateTime = moment(
+                //     `${eachAvailability.journeyStartDate} ${eachAvailability.journeyStartTime}`,
+                //     "YYYY-MM-DD HH:mm"
+                // ).format('LLLL');
                 let date =eachAvailability.journeyStartDate;
                 let time =eachAvailability.journeyStartTime;
                 let year=date.slice(0,4);
@@ -132,3 +124,16 @@ const UserSchedualAvailability = ({ displaySearch, user }) => {
 };
 
 export default UserSchedualAvailability;
+    // const currentDate = "2021-07-03";
+    // const schedulerData = [
+    //     {
+    //         title: "Website Re-Design Plan",
+    //         startDate: new Date(2021, 6, 8, 9, 30), // year, data,month, time, time
+    //         endDate: new Date(2021, 6, 8, 11, 30),
+    //     },
+    //     {
+    //         title: "Book Flights to San Fran for Sales Trip",
+    //         startDate: new Date(2021, 6, 9, 13, 0),
+    //         endDate: new Date(2021, 6, 9, 15, 0),
+    //     },
+    // ];

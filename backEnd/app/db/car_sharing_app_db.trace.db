@@ -1,4 +1,4 @@
-2021-07-04 18:38:20 database: flush
+2021-07-05 12:20:36 database: flush
 org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/Users/umairRocks/codeclan_work/week_15/carSharingApp/backEnd/app/db/car_sharing_app_db.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
@@ -30,9 +30,9 @@ org.h2.message.DbException: General error: "java.lang.IllegalStateException: The
 	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:726)
 	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
-	at java.base/java.lang.Thread.run(Thread.java:832)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/Users/umairRocks/codeclan_work/week_15/carSharingApp/backEnd/app/db/car_sharing_app_db.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
@@ -45,8 +45,8 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:/Users/umair
 Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/sun.nio.ch.FileLockTable.checkList(FileLockTable.java:229)
 	at java.base/sun.nio.ch.FileLockTable.add(FileLockTable.java:123)
-	at java.base/sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1297)
+	at java.base/sun.nio.ch.FileChannelImpl.tryLock(FileChannelImpl.java:1154)
 	at org.h2.store.fs.FileNio.tryLock(FilePathNio.java:121)
-	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1178)
+	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more

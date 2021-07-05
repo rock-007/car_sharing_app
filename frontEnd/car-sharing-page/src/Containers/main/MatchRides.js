@@ -1,6 +1,20 @@
 import Paper from "@material-ui/core/Paper";
 import Button from "react-bootstrap/Button";
-const MatchRides = () => {
+import OfferTable from "../../components/main/OfferTable";
+const MatchRides = ({ displaySearchResult }) => {
+    console.log(displaySearchResult);
+    displaySearchResult.map((eachResult) => {
+        for (let [userId, userObject] of eachResult.entries()) {
+            console.log(userId);
+            console.log(userObject);
+            <OfferTable userName={userObject[0]} rideInfo={userObject[1]}/>;
+        }
+    });
+    // if (displaySearchResult.length>0){
+    //     console.log(displaySearchResult[0].get("3"));
+
+    //   }
+
     return (
         <>
             <Paper>
@@ -28,7 +42,7 @@ const MatchRides = () => {
                             <td>2</td>
                             <td>Jacob</td>
                             <td>Thornton</td>
-                            <td>@fat</td>
+                            <td>@hat</td>
                             <td>
                                 <Button>Book</Button>
                             </td>
