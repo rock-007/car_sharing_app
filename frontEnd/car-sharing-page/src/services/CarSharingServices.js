@@ -31,7 +31,7 @@ export const getUserSchedules = (user) => {
 export const getSearchResults = (searchInput) => {
     console.log(searchInput);
 
-    let tempArray=[];
+    let tempArray = [];
     return fetch(baseURL2, {
         method: "POST",
         body: JSON.stringify(searchInput),
@@ -43,14 +43,17 @@ export const getSearchResults = (searchInput) => {
     })
         .then((res) => res.json())
         .then((availableRides) => {
-            tempArray=availableRides;
+            tempArray = availableRides;
             const result = availableRides.map((eachAvailableRide) =>
                 getUserId(eachAvailableRide)
             );
- 
+
             return Promise.all(result);
-        }).then(x=>{
-            return (x.map((y,index)=>{return[y,tempArray[index]]}))
+        })
+        .then((x) => {
+            return x.map((y, index) => {
+                return [y, tempArray[index]];
+            });
         });
 };
 
@@ -59,6 +62,21 @@ export const getUserId = (eachAvailability) => {
     return fetch(baseURL3, {
         method: "POST",
         body: JSON.stringify(eachAvailability),
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            // "Access-Control-Allow-Origin": "*",
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => data);
+};
+
+export const bookAvailableSlot = (bookAvailabilty, user) => {
+    console.log(bookAvailabilty);
+    return fetch(baseURL3, {
+        method: "POST",
+        body: JSON.stringify([bookAvailabilty, user]),
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",

@@ -1,8 +1,13 @@
 import Button from "react-bootstrap/Button";
 
-const OfferTable = ({ userName, rideInfo, index }) => {
+const OfferTable = ({ userName, rideInfo, index, bookSlotRequest }) => {
     console.log(userName);
     console.log(rideInfo);
+
+    const bookSlot = (bookAvailabilty) => {
+        bookSlotRequest(bookAvailabilty);
+
+    };
 
     return (
         <>
@@ -14,7 +19,9 @@ const OfferTable = ({ userName, rideInfo, index }) => {
                 <td>{4}</td>
 
                 <td>
-                    <Button>Book</Button>
+                    <Button value={rideInfo} onClick={() => bookSlot(rideInfo)}>
+                        Book
+                    </Button>
                 </td>
             </tr>
         </>

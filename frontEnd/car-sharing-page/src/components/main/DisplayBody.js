@@ -4,12 +4,16 @@ import MatchRides from "../../containers/main/MatchRides";
 import React, { useState, useCallback, useEffect } from "react";
 import UserSchedualAvailability from "./UserSchedualAvailability";
 
-const DisplayBody = ({ displaySearch, user, displaySearchResult1 }) => {
+const DisplayBody = ({ displaySearch, user, displaySearchResult1,bookSlotRequest }) => {
+
     return (
         <>
             <div className="container">
                 {displaySearch ? (
-                    <MatchRides displaySearchResult={displaySearchResult1} />
+                    <MatchRides
+                        displaySearchResult={displaySearchResult1}
+                        bookSlotRequest={bookSlotRequest}
+                    />
                 ) : (
                     <UserSchedualAvailability user={user} />
                 )}
