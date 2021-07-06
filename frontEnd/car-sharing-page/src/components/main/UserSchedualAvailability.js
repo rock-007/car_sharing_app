@@ -32,117 +32,123 @@ const UserSchedualAvailability = ({ displaySearch, user }) => {
     //     },
 
     const dataCalenderMapping = (availabilityAndBookings) => {
- 
-        let availabilityAndBookingsArray= availabilityAndBookings[0].map((eachAvailability, index) => {
-            // var dateTime = moment(
-            //     `${eachAvailability.journeyStartDate} ${eachAvailability.journeyStartTime}`,
-            //     "YYYY-MM-DD HH:mm"
-            // ).format('LLLL');
-            if (index === 0) {
-                let date = eachAvailability.journeyStartDate;
-                let time = eachAvailability.journeyStartTime;
-                let year = date.slice(0, 4);
-                let month = date.slice(5, 7);
-                let day = date.slice(8, 10);
-                let hour = time.slice(0, 2);
-                let min = time.slice(3, 5);
-                console.log(`${hour - 1 + 2}`);
-                console.log(new Date(2021, 6, 8, 11, 30));
+        console.log(availabilityAndBookings);
+        let tempArray = [];
+        let availabilityAndBookingsArray = availabilityAndBookings.map(
+            (eachAvailabilityAndBooking, index) => {
+                console.log(eachAvailabilityAndBooking[0] !== undefined);
+                //eachAvailabilityAndBooking[0] is to make sure that array.map function doest run for empty array
+                if (
+                    eachAvailabilityAndBooking.length > 0 &&
+                    eachAvailabilityAndBooking[0] !== undefined
+                ) {
+                    return eachAvailabilityAndBooking.map((eachItem, i) => {
+                        if (index === 0) {
+                            console.log(eachItem);
 
-                console.log(new Date(year, `${month - 1}`, day, hour, min));
-                console.log(
-                    new Date(year, `${month - 1}`, day, `${hour + 1}`, min)
-                );
-                return {
-                    id: index,
-                    title: `from ${eachAvailability.departingCity} to ${eachAvailability.destinationCity} `,
-                    startDate: new Date(year, `${month - 1}`, day, hour, min),
-                    // endDate: new Date(2021, 6, 8, 11, 35),
-                    // startDate: new Date(year, month, day, hour, min),
-                    endDate: new Date(
-                        year,
-                        `${month - 1}`,
-                        day,
-                        `${hour - 1 + 2}`,
-                        min
-                    ),
-                    priorityId: 1,
-                };
+                            let date = eachItem.journeyStartDate;
+
+                            console.log(date);
+                            let time = eachItem.journeyStartTime;
+                            console.log(time);
+                            let year = date.slice(0, 4);
+                            let month = date.slice(5, 7);
+                            let day = date.slice(8, 10);
+                            let hour = time.slice(0, 2);
+                            let min = time.slice(3, 5);
+                            console.log(`${hour - 1 + 2}`);
+                            console.log(new Date(2021, 6, 8, 11, 30));
+
+                            console.log(
+                                new Date(year, `${month - 1}`, day, hour, min)
+                            );
+                            console.log(
+                                new Date(
+                                    year,
+                                    `${month - 1}`,
+                                    day,
+                                    `${hour + 1}`,
+                                    min
+                                )
+                            );
+
+                            // if (index === 0) {
+                            tempArray.push({
+                                id: index + i,
+                                title: `from ${eachItem.departingCity} to ${eachItem.destinationCity} `,
+                                startDate: new Date(
+                                    year,
+                                    `${month - 1}`,
+                                    day,
+                                    hour,
+                                    min
+                                ),
+                                endDate: new Date(
+                                    year,
+                                    `${month - 1}`,
+                                    day,
+                                    `${hour - 1 + 2}`,
+                                    min
+                                ),
+                                priorityId: 1,
+                            });
+                        } else {
+                            console.log(eachItem["availability"]);
+
+                            let date =
+                                eachItem["availability"].journeyStartDate;
+
+                            console.log(date);
+                            let time =
+                                eachItem["availability"].journeyStartTime;
+                            console.log(time);
+                            let year = date.slice(0, 4);
+                            let month = date.slice(5, 7);
+                            let day = date.slice(8, 10);
+                            let hour = time.slice(0, 2);
+                            let min = time.slice(3, 5);
+                            console.log(`${hour - 1 + 2}`);
+                            console.log(new Date(2021, 6, 8, 11, 30));
+
+                            console.log(
+                                new Date(year, `${month - 1}`, day, hour, min)
+                            );
+                            console.log(
+                                new Date(
+                                    year,
+                                    `${month - 1}`,
+                                    day,
+                                    `${hour + 1}`,
+                                    min
+                                )
+                            );
+                            // if (index === 0)
+                            tempArray.push({
+                                id: index + i + 15,
+                                title: `from ${eachItem["availability"]["departingCity"]} to ${eachItem["availability"]["destinationCity"]} `,
+                                startDate: new Date(
+                                    year,
+                                    `${month - 1}`,
+                                    day,
+                                    hour,
+                                    min
+                                ),
+                                endDate: new Date(
+                                    year,
+                                    `${month - 1}`,
+                                    day,
+                                    `${hour - 1 + 2}`,
+                                    min
+                                ),
+                                priorityId: 2,
+                            });
+                        }
+                    });
+                }
             }
-            if (index === 1) {
-                let date = eachAvailability.journeyStartDate;
-                let time = eachAvailability.journeyStartTime;
-                let year = date.slice(0, 4);
-                let month = date.slice(5, 7);
-                let day = date.slice(8, 10);
-                let hour = time.slice(0, 2);
-                let min = time.slice(3, 5);
-                console.log(`${hour - 1 + 2}`);
-                console.log(new Date(2021, 6, 8, 11, 30));
-
-                console.log(new Date(year, `${month - 1}`, day, hour, min));
-                console.log(
-                    new Date(year, `${month - 1}`, day, `${hour + 1}`, min)
-                );
-                return {
-                    id: index,
-                    title: `from ${eachAvailability.departingCity} to ${eachAvailability.destinationCity} `,
-                    startDate: new Date(year, `${month - 1}`, day, hour, min),
-                    // endDate: new Date(2021, 6, 8, 11, 35),
-                    // startDate: new Date(year, month, day, hour, min),
-                    endDate: new Date(
-                        year,
-                        `${month - 1}`,
-                        day,
-                        `${hour - 1 + 2}`,
-                        min
-                    ),
-                    priorityId: 2,
-                };
-            }
-        });
-
-        setData(availabilityAndBookingsArray);
-
-        // console.log("2223");
-        // console.log(data1);
-        // setData(
-        //     data1.map((eachAvailability, index) => {
-        //         // var dateTime = moment(
-        //         //     `${eachAvailability.journeyStartDate} ${eachAvailability.journeyStartTime}`,
-        //         //     "YYYY-MM-DD HH:mm"
-        //         // ).format('LLLL');
-        //         let date = eachAvailability.journeyStartDate;
-        //         let time = eachAvailability.journeyStartTime;
-        //         let year = date.slice(0, 4);
-        //         let month = date.slice(5, 7);
-        //         let day = date.slice(8, 10);
-        //         let hour = time.slice(0, 2);
-        //         let min = time.slice(3, 5);
-        //         console.log(`${hour - 1 + 2}`);
-        //         console.log(new Date(2021, 6, 8, 11, 30));
-
-        //         console.log(new Date(year, `${month - 1}`, day, hour, min));
-        //         console.log(
-        //             new Date(year, `${month - 1}`, day, `${hour + 1}`, min)
-        //         );
-        //         return {
-        //             id: index,
-        //             title: `from ${eachAvailability.departingCity} to ${eachAvailability.destinationCity} `,
-        //             startDate: new Date(year, `${month - 1}`, day, hour, min),
-        //             // endDate: new Date(2021, 6, 8, 11, 35),
-        //             // startDate: new Date(year, month, day, hour, min),
-        //             endDate: new Date(
-        //                 year,
-        //                 `${month - 1}`,
-        //                 day,
-        //                 `${hour - 1 + 2}`,
-        //                 min
-        //             ),
-        //             priorityId: 1,
-        //         };
-        //     })
-        // );
+        );
+        console.log(tempArray);
+        setData(tempArray);
     };
 
     let currentDate = new Date().toISOString().slice(0, 10);
@@ -181,10 +187,7 @@ const UserSchedualAvailability = ({ displaySearch, user }) => {
                 style={{ borderRight: "1px solid grey" }}
                 onClick={schedualClicked}
             >
-                <i>
-                    {" "}
-                    <em> Schedual </em>
-                </i>
+                <em> Schedual </em>
             </div>
             <div onClick={offerAvailabilityClicked}>
                 <em>offerAvailability </em>
