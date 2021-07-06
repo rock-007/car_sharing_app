@@ -5,6 +5,8 @@ const OfferTable = ({ userName, rideInfo, index, bookSlotRequest }) => {
     console.log(rideInfo);
 
     const bookSlot = (bookAvailabilty) => {
+        console.log(bookAvailabilty);
+        // bookAvailabilty.available= false;
         bookSlotRequest(bookAvailabilty);
 
     };

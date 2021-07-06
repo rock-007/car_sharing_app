@@ -14,9 +14,11 @@ import java.util.List;
 public interface AvailabilityRepository extends JpaRepository<Availability, Long> {
     List<Availability> findByVehicleUser(User user);
     List<Availability> findByVehicleUserId(Long id);
-
-        List<Availability> findByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(String departingCity, String destinationCity, LocalDate journeyStartDate ,LocalTime journeyStartTime, Boolean booleanValue);
+    Availability findAvailabilityById(Long id);
+        List<Availability> findAvailabilityByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(String departingCity, String destinationCity, LocalDate journeyStartDate ,LocalTime journeyStartTime, Boolean booleanValue);
 }
+
+
 
 
 //    List<Availability> findByDepartingCityAndDestinationCityAndJourney(String departingCity, String destinationCity);

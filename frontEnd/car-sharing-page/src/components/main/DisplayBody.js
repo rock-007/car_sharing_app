@@ -8,7 +8,7 @@ const DisplayBody = ({ displaySearch, user, displaySearchResult1,bookSlotRequest
 
     return (
         <>
-            <div className="container">
+            <div  className="container" style={{padding: "0", margin:"3rem", maxWidth:"110rem"}} >
                 {displaySearch ? (
                     <MatchRides
                         displaySearchResult={displaySearchResult1}

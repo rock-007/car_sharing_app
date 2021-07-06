@@ -24,15 +24,17 @@ public class Availability {
     @Column(name = "journey_start_time")
     private LocalTime journeyStartTime;
     @Column(name = "available")
-    private Boolean available= true ;
+    private boolean available ;
 
-    public Boolean getAvailable() {
+    public boolean getAvailable() {
         return available;
     }
 
-    public void setAvailable(Boolean available) {
+    public void setAvailable(boolean available) {
         this.available = available;
     }
+
+
 
     //LocalDate today = LocalDate.now();
     @JsonBackReference

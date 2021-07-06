@@ -48,6 +48,7 @@ const MainBody = ({ user }) => {
             // setDisplaySearchResult([...displaySearchResult, tempArray]);
         });
     };
+    
     const bookSlotRequest = (bookAvailabilty) => {
         console.log(bookAvailabilty);
         setDisplaySearch(false);

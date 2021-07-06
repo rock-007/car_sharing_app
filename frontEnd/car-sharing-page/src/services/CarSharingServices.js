@@ -2,6 +2,7 @@ const baseURL = "http://localhost:8080/api/user/availability";
 const baseURL1 = "http://localhost:8080/api/users/";
 const baseURL2 = "http://localhost:8080/api/search/";
 const baseURL3 = "http://localhost:8080/api/idsearch/";
+const baseURL4 = "http://localhost:8080/api/bookings";
 
 export const updateAvailability = (payload) => {
     return fetch(baseURL, {
@@ -17,7 +18,11 @@ export const updateAvailability = (payload) => {
 //User_Availability_Schedule
 export const getUserSchedules = (user) => {
     console.log(user);
-    return fetch(baseURL1 + "user", {
+    const userAvailabilty = `${baseURL1}user`;
+    const userBooking = `${baseURL1}bookings`;
+    console.log(userBooking);
+
+    const options = {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -25,8 +30,30 @@ export const getUserSchedules = (user) => {
             Accept: "application/json",
             // "Access-Control-Allow-Origin": "*",
         },
-    }).then((res) => res.json());
+    };
+
+    return Promise.all([
+        fetch(userAvailabilty, options),
+        fetch(userBooking, options),
+    ]).then((res) => {
+        return Promise.all(
+            res.map(function (res) {
+                return res.json();
+            })
+        );
+    });
+
+    // fetch(baseURL1 + "user", {
+    //     method: "POST",
+    //     body: JSON.stringify(user),
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //         // "Access-Control-Allow-Origin": "*",
+    //     },
+    // }).then((res) => res.json());
 };
+
 //USer_Search_Result
 export const getSearchResults = (searchInput) => {
     console.log(searchInput);
@@ -44,13 +71,19 @@ export const getSearchResults = (searchInput) => {
         .then((res) => res.json())
         .then((availableRides) => {
             tempArray = availableRides;
-            const result = availableRides.map((eachAvailableRide) =>
-                getUserId(eachAvailableRide)
-            );
+            // console.log("/api/search avaiable object"+availableRides )
 
+            const result = availableRides.map((eachAvailableRide) => {
+                console.log("/api/search each object", eachAvailableRide);
+                return getUserId(eachAvailableRide);
+            });
+            // It will result is each user name corresponding to the aviaalbe rider offers
             return Promise.all(result);
         })
         .then((x) => {
+            console.log(x);
+            console.log(tempArray[0]);
+
             return x.map((y, index) => {
                 return [y, tempArray[index]];
             });
@@ -73,10 +106,15 @@ export const getUserId = (eachAvailability) => {
 };
 
 export const bookAvailableSlot = (bookAvailabilty, user) => {
-    console.log(bookAvailabilty);
-    return fetch(baseURL3, {
+    console.log("xxxxxxxxxxxxxxxxx" + bookAvailabilty.available);
+    console.log("xxxxxxxxxxxxxxxxx" + user);
+
+    return fetch(baseURL4, {
         method: "POST",
-        body: JSON.stringify([bookAvailabilty, user]),
+        body: JSON.stringify({
+            availability: bookAvailabilty,
+            user
+        }),
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
