@@ -1,6 +1,6 @@
 import Paper from "@material-ui/core/Paper";
 import OfferTable from "../../components/main/OfferTable";
-const MatchRides = ({ displaySearchResult }) => {
+const MatchRides = ({ displaySearchResult, bookSlotRequest }) => {
     let displayResult = null;
 
     if (displaySearchResult.length > 0) {
@@ -19,6 +19,7 @@ const MatchRides = ({ displaySearchResult }) => {
                     rideInfo={eachResult[1]}
                     key={index}
                     index={index}
+                    bookSlotRequest={bookSlotRequest}
                 />
             );
         });

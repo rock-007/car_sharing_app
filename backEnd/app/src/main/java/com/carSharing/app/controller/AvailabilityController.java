@@ -42,10 +42,10 @@ public class AvailabilityController {
     public ResponseEntity<List<Availability>> searchAvailability(@RequestBody Search search) {
         System.out.println("ccccc" + search.getJourneyStartDate());
 
-//
-//        List<Availability> aaa = availabilityRepository.findByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true);
-//        System.out.println("yyy"+aaa);
-        return new ResponseEntity<>(availabilityRepository.findByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true), HttpStatus.OK);
+////
+        List<Availability> aaa = availabilityRepository.findAvailabilityByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true);
+        System.out.println("yyy11111111111111"+aaa);
+        return new ResponseEntity<>(availabilityRepository.findAvailabilityByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true), HttpStatus.OK);
     }
 
     @PostMapping(value = "/api/idsearch")

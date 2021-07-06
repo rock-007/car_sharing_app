@@ -1,7 +1,7 @@
 import Search from "./Search";
 import DisplayBody from "./DisplayBody";
 import React, { useState } from "react";
-import { getSearchResults, getUserId } from "../../services/CarSharingServices";
+import { getSearchResults, getUserId,bookAvailableSlot } from "../../services/CarSharingServices";
 
 const MainBody = ({ user }) => {
     const [displaySearch, setDisplaySearch] = useState(false);
@@ -24,8 +24,8 @@ const MainBody = ({ user }) => {
             journeyStartDate,
             journeyStartTime,
         }).then((searchResult) => {
-            console.log(searchResult[0])
-            setDisplaySearchResult(searchResult)
+            console.log(searchResult[0]);
+            setDisplaySearchResult(searchResult);
             // console.log(searchResult);
             // let tempArray = [];
             // let result = searchResult.map((eachresult, index) => {
@@ -48,6 +48,17 @@ const MainBody = ({ user }) => {
             // setDisplaySearchResult([...displaySearchResult, tempArray]);
         });
     };
+    
+    const bookSlotRequest = (bookAvailabilty) => {
+        console.log(bookAvailabilty);
+        setDisplaySearch(false);
+        bookAvailableSlot(bookAvailabilty,user);
+
+        // console.log(e);
+        // need to dispaly the main screen
+        // need booking username
+        //need Availabilty object
+    };
 
     return (
         <>
@@ -56,6 +67,7 @@ const MainBody = ({ user }) => {
                 displaySearch={displaySearch}
                 user={user}
                 displaySearchResult1={displaySearchResult}
+                bookSlotRequest={bookSlotRequest}
             />
         </>
     );

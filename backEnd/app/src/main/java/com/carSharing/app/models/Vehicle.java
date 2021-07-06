@@ -28,6 +28,13 @@ public class Vehicle {
      @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
     private List<Availability> availabilities;
 
+    public List<Availability> getAvailabilities() {
+        return availabilities;
+    }
+
+    public void setAvailabilities( Availability  availabilities) {
+        this.availabilities.add(availabilities);
+    }
 //    @ManyToOne
 //    @JoinColumn(name = "vehicle_id", nullable = false)
 //    private Vehicle vehicle;
