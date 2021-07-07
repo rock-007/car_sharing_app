@@ -21,7 +21,7 @@ import {
     DayView,
     Appointments,
 } from "@devexpress/dx-react-scheduler-material-ui";
-const LeftDisplay = () => {
+const LeftDisplay = ({ submitAvailability }) => {
     const currentDate = new Date().toISOString().slice(0, 10);
     const schedulerData = [
         {
@@ -37,14 +37,24 @@ const LeftDisplay = () => {
     ];
     console.log(new Date(2021, 6, 2, 9, 30));
 
-    const handleAvailability = (e) => {
+    const handleAvailability = (event) => {
         // need to gater all the info and then send to the BE t osave in the availabilty
         // remeber need to dummy the vehical info and user info
         // when using login then it will automatoocalyy save the user vehicals
-        e.preventDefault();
+        event.preventDefault();
 
-        console.log(e.target.deptCity.value);
-        console.log(e.target.date.value);
+        console.log(event.target.deptCity.value);
+        console.log(event.target.date.value);
+
+        const availability = {
+            departingCity: event.target.deptCity.value,
+            destinationCity: event.target.destCity.value,
+            journeyStartDate: event.target.date.value,
+            journeyStartTime: event.target.time.value,
+            available: "true",
+        };
+
+        submitAvailability(availability);
     };
     return (
         <>
