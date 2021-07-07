@@ -2,15 +2,19 @@ import LeftDisplay from "../../containers/main/LeftDisplay";
 import RightDisplay from "../../containers/main/RightDisplay";
 import React, { useState, useEffect } from "react";
 import { getUserSchedules } from "../../services/CarSharingServices";
-import moment from "moment";
-import red from "@material-ui/core/colors/red";
-import { blue, orange } from "@material-ui/core/colors";
-
+import Grid from "@material-ui/core/Grid";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 const UserSchedualAvailability = ({ displaySearch, user }) => {
     console.log(user);
     const [schedual, setSchedual] = useState(true);
     const [offerAvailability, setOfferAvailability] = useState(false);
+    const [UserDisplay, setUserDisplay] = useState("availability");
 
+    const handleChange = (event, newAlignment) => {
+        console.log(event);
+        setUserDisplay(newAlignment);
+    };
     useEffect(() => {
         pullData();
     }, []);
@@ -183,7 +187,7 @@ const UserSchedualAvailability = ({ displaySearch, user }) => {
     }
     return (
         <>
-            <div
+            {/* <div
                 style={{ borderRight: "1px solid grey" }}
                 onClick={schedualClicked}
             >
@@ -192,31 +196,34 @@ const UserSchedualAvailability = ({ displaySearch, user }) => {
             <div onClick={offerAvailabilityClicked}>
                 <em>offerAvailability </em>
             </div>
-            <div>
-                {schedual && <LeftDisplay />}
-                {offerAvailability && (
-                    <RightDisplay
-                        data={data}
-                        currentDate={currentDate}
-                        updateChange={updateChange}
-                    />
-                )}
-            </div>
+            <div> */}
+            <Grid container spacing={2} direction="column" alignItems="center">
+                <Grid item>
+                    <ToggleButtonGroup
+                        size="small"
+                        value={UserDisplay}
+                        exclusive
+                        onChange={handleChange}
+                    >
+                        <ToggleButton value="availability">
+                            AVAILABILITY
+                        </ToggleButton>
+                        <ToggleButton value="calender">Calender</ToggleButton>
+                    </ToggleButtonGroup>
+                </Grid>
+            </Grid>
+
+            {UserDisplay === "availability" && <LeftDisplay />}
+            {UserDisplay === "calender" && (
+                <RightDisplay
+                    data={data}
+                    currentDate={currentDate}
+                    updateChange={updateChange}
+                />
+            )}
+            {/* </div> */}
         </>
     );
 };
 
 export default UserSchedualAvailability;
-// const currentDate = "2021-07-03";
-// const schedulerData = [
-//     {
-//         title: "Website Re-Design Plan",
-//         startDate: new Date(2021, 6, 8, 9, 30), // year, data,month, time, time
-//         endDate: new Date(2021, 6, 8, 11, 30),
-//     },
-//     {
-//         title: "Book Flights to San Fran for Sales Trip",
-//         startDate: new Date(2021, 6, 9, 13, 0),
-//         endDate: new Date(2021, 6, 9, 15, 0),
-//     },
-// ];
