@@ -4,12 +4,24 @@ import Paper from "@material-ui/core/Paper";
 import { ViewState } from "@devexpress/dx-react-scheduler";
 import { WeekView } from "@devexpress/dx-react-scheduler-material-ui";
 import "./Display.css";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import { Form, Button } from "react-bootstrap/";
+import Container from "react-bootstrap/Container";
+
+import {
+    FormControl,
+    InputLabel,
+    FormHelperText,
+    Input,
+} from "@material-ui/core";
+
 import {
     Scheduler,
     DayView,
     Appointments,
 } from "@devexpress/dx-react-scheduler-material-ui";
-const LeftDisplay = () => {
+const LeftDisplay = ({ submitAvailability }) => {
     const currentDate = new Date().toISOString().slice(0, 10);
     const schedulerData = [
         {
@@ -24,15 +36,57 @@ const LeftDisplay = () => {
         },
     ];
     console.log(new Date(2021, 6, 2, 9, 30));
+
+    const handleAvailability = (event) => {
+        // need to gater all the info and then send to the BE t osave in the availabilty
+        // remeber need to dummy the vehical info and user info
+        // when using login then it will automatoocalyy save the user vehicals
+        event.preventDefault();
+
+        console.log(event.target.deptCity.value);
+        console.log(event.target.date.value);
+
+        const availability = {
+            departingCity: event.target.deptCity.value,
+            destinationCity: event.target.destCity.value,
+            journeyStartDate: event.target.date.value,
+            journeyStartTime: event.target.time.value,
+            available: "true",
+        };
+
+        submitAvailability(availability);
+    };
     return (
         <>
-            <Paper className="paper">
-                <Scheduler data={schedulerData} height={460}>
-                    <ViewState defaultCurrentDate={currentDate} />
-                    <WeekView startDayHour={9} endDayHour={21} />
-                    <Appointments />
-                </Scheduler>
-            </Paper>
+            <Paper elevation={6}>
+                <Box p={1}>
+                    <Typography variant="h7">
+                        <Container>
+                            <Form onSubmit={handleAvailability}>
+                                <Form.Group>
+                                    <Form.Label>Departing City</Form.Label>
+                                    <Form.Control
+                                        id="deptCity"
+                                        type="text"
+                                        placeholder="Departing City"
+                                    />
+                                    <Form.Label>Destination City</Form.Label>
+                                    <Form.Control
+                                        id="destCity"
+                                        type="text"
+                                        placeholder="Destination City"
+                                    />
+                                    <Form.Label>Date</Form.Label>
+                                    <Form.Control id="date" type="date" />
+                                    <Form.Label> Time</Form.Label>
+                                    <Form.Control id="time" type="time" />
+                                </Form.Group>
+                                <Button type="submit">Submit</Button>
+                            </Form>
+                        </Container>
+                    </Typography>
+                </Box>
+            </Paper>{" "}
         </>
     );
 };

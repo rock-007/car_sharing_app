@@ -33,7 +33,8 @@ public class AvailabilityController {
 //    SearchRepository searchRepository;
 
     @PostMapping(value = "/api/availability")
-    public ResponseEntity<Availability> postAvailability(@RequestBody Availability availability) {
+    public ResponseEntity<Availability> setAvailableSlot(@RequestBody Availability availability) {
+        System.out.println(availability);
         availabilityRepository.save(availability);
         return new ResponseEntity<>(availability, HttpStatus.CREATED);
     }
@@ -42,9 +43,7 @@ public class AvailabilityController {
     public ResponseEntity<List<Availability>> searchAvailability(@RequestBody Search search) {
         System.out.println("ccccc" + search.getJourneyStartDate());
 
-////
-        List<Availability> aaa = availabilityRepository.findAvailabilityByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true);
-        System.out.println("yyy11111111111111"+aaa);
+
         return new ResponseEntity<>(availabilityRepository.findAvailabilityByDepartingCityAndDestinationCityAndJourneyStartDateAndJourneyStartTimeGreaterThanAndAvailable(search.getDepartingCity(), search.getDestinationCity(), search.getJourneyStartDate(), search.getJourneyStartTime(),true), HttpStatus.OK);
     }
 
@@ -54,6 +53,10 @@ public class AvailabilityController {
 
         return new ResponseEntity<>(user , HttpStatus.OK);
     }
+
+
+
+
 }
 
 

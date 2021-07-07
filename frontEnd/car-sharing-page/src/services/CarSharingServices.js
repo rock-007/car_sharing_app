@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:8080/api/user/availability";
+const baseURL = "http://localhost:8080/api/availability";
 const baseURL1 = "http://localhost:8080/api/users/";
 const baseURL2 = "http://localhost:8080/api/search/";
 const baseURL3 = "http://localhost:8080/api/idsearch/";
@@ -42,16 +42,6 @@ export const getUserSchedules = (user) => {
             })
         );
     });
-
-    // fetch(baseURL1 + "user", {
-    //     method: "POST",
-    //     body: JSON.stringify(user),
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //         // "Access-Control-Allow-Origin": "*",
-    //     },
-    // }).then((res) => res.json());
 };
 
 //USer_Search_Result
@@ -113,8 +103,23 @@ export const bookAvailableSlot = (bookAvailabilty, user) => {
         method: "POST",
         body: JSON.stringify({
             availability: bookAvailabilty,
-            user
+            user,
         }),
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            // "Access-Control-Allow-Origin": "*",
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => data);
+};
+
+export const setAvailableSlot = (availability) => {
+    console.log(availability)
+    return fetch(baseURL, {
+        method: "POST",
+        body: JSON.stringify(availability),
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",

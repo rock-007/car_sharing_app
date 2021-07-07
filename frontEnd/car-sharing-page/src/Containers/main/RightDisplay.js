@@ -36,8 +36,8 @@ const RightDisplay = ({ data, currentDate, updateChange }) => {
             fieldName: "priorityId",
             title: "Priority",
             instances: [
-                { text: "Availabilty/Offers", id: 1, color: blue },
-                { text: "Bookings", id: 2, color: orange },
+                { text: "Availabilty/Offers 🟦", id: 1, color: blue },
+                { text: "Bookings 🟧", id: 2, color: orange },
             ],
         },
     ];
