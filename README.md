@@ -6,7 +6,8 @@ Car Sharing application has features of offering availability from one city to a
 The app can perform the below functionality
 
 - Register Users
-- Search availabilities 
+- Search availabilities (a user can search other users availability as per search critaria)
+- User can offer availability
 - Book availability
 - Display Bookings/Availability
 
