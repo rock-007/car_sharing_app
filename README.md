@@ -12,9 +12,10 @@ The app can perform the below functionality
 
 
 # Technologies_Used
+
 -React
 
-- H2 db
+-H2 db
 
 -DevExtreme React Scheduler (Schedule Library)
 
